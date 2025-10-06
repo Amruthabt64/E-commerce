@@ -1,0 +1,72 @@
+/* Cart.css */
+
+/* Title */
+.cart-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #0d6efd; /* Same blue as Navbar */
+}
+
+/* Empty cart message */
+.cart-empty {
+  font-size: 1rem;
+  color: #555;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Cart items container */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Remove button */
+.cart-item button {
+  background-color: #dc3545; /* red */
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cart-item button:hover {
+  background-color: #bb2d3b;
+}
+
+/* Place Order button */
+.place-order-btn {
+  background-color: #0d6efd; /* blue */
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s ease;
+}
+
+.place-order-btn:hover {
+  background-color: #0b5ed7;
+}

@@ -1,0 +1,54 @@
+/* Navbar.css */
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #0d6efd; /* Bootstrap blue */
+  color: white;
+}
+
+/* Brand / Logo */
+.navbar h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Links container */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Links */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  color: #dbeafe; /* light hover */
+}
+
+/* Logout button */
+.nav-links button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545; /* red */
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.nav-links button:hover {
+  background-color: #bb2d3b;
+}
