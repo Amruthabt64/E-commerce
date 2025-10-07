@@ -24,7 +24,8 @@ function Home() {
           products.map((p) => (
             <div key={p.id} className="product-card">
               <h3>{p.name}</h3>
-              <p>${p.price}</p>
+              <p>{p.price}</p>
+              <p>{p.stocks}</p>
               <button onClick={() => addToCart(p)}>Add to Cart</button>
             </div>
           ))

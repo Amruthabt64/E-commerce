@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
   display: flex;
   flex-direction: column;
   justify-content: center; 
@@ -7,14 +7,14 @@
   background: linear-gradient(135deg, #c2e9fb, pink, rgb(89, 89, 172));
 }
 
-.login_input {
+.register-input {
   width: 250px;
   padding: 10px;
   margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-.login-button {
+.register-button {
   padding: 8px 16px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -24,6 +24,6 @@
   color: white;
   cursor: pointer;
 }
-.login-button:hover {
+.register-button:hover {
   background-color: darkcyan;
 }

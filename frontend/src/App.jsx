@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Register from "./pages/Register"
 import "./App.css"
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </div>

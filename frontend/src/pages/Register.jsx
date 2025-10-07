@@ -1,22 +1,20 @@
-import { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "../styles/Login.css";
-import { StoreContext } from "../context/StoreContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/Register.css";
 
-const Login = () => {
-  const { setUser } = useContext(StoreContext); // ✅ inside component
+function Register() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    setError("");
+    setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("http://localhost:5000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -25,38 +23,40 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Store JWT
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("username", username); // persist username
-
-        // Set user in context
-        setUser({ username });
-
-        // Redirect to profile
-        navigate("/profile");
+        setMessage("Registered successfully! Please login.");
+        setTimeout(() => navigate("/login"), 1500);
       } else {
-        setError(data.error || data.message || "Invalid credentials");
+        // Display backend error if any, otherwise default message
+        setMessage(
+          data.error ||
+            data.message ||
+            "Email must be valid & password ≥8 chars with 1×A–Z, 1×a–z, 1×0–9, 1×@#$%."
+        );
       }
     } catch (err) {
-      setError("Server not reachable");
+      setMessage("Server not reachable");
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+    <div className="register-container">
+      <h2>Register</h2>
+      <form onSubmit={handleRegister}>
+        {/* Email input */}
         <input
-          className="login_input"
+          className="register-input"
           type="email"
           placeholder="Email"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
+        <br />
+
+        {/* Password input with toggle */}
         <div style={{ position: "relative" }}>
           <input
-            className="login_input"
+            className="register-input"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
@@ -77,13 +77,16 @@ const Login = () => {
             {showPassword ? "👁️" : "🙈"}
           </span>
         </div>
-        <button type="submit" className="login-button">Login</button>
         <br />
-        <Link to="/register">Create Account</Link>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <button type="submit" className="register-button">
+          Register
+        </button>
       </form>
+
+      {message && <p style={{ color: message.includes("success") ? "green" : "red" }}>{message}</p>}
     </div>
   );
-};
+}
 
-export default Login;
+export default Register;

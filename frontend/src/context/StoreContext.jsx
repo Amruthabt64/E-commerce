@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const StoreContext = createContext();
 
@@ -7,44 +7,22 @@ export const StoreProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState(null);
 
-  // Cart Logic
-  const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-  };
-
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((p) => p.id !== id));
-  };
-
-  const placeOrder = () => {
-    setOrders((prev) => [...prev, { id: Date.now(), items: cart }]);
-    setCart([]);
-  };
-
-  // User Logic
-  const login = (username, password) => {
-    if (username === "user" && password === "pass") {
+  // Restore user from localStorage on mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+    if (token && username) {
       setUser({ username });
-      return true;
     }
-    return false;
-  };
+  }, []);
 
-  const logout = () => setUser(null);
+  const addToCart = (product) => setCart((prev) => [...prev, product]);
+  const removeFromCart = (id) => setCart((prev) => prev.filter((p) => p.id !== id));
+  const placeOrder = () => { setOrders([...orders, { id: Date.now(), items: cart }]); setCart([]); };
+  const logout = () => { setUser(null); localStorage.removeItem("token"); localStorage.removeItem("username"); };
 
   return (
-    <StoreContext.Provider
-      value={{
-        cart,
-        orders,
-        user,
-        addToCart,
-        removeFromCart,
-        placeOrder,
-        login,
-        logout,
-      }}
-    >
+    <StoreContext.Provider value={{ cart, orders, user, setUser, addToCart, removeFromCart, placeOrder, logout }}>
       {children}
     </StoreContext.Provider>
   );
