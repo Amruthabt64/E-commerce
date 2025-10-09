@@ -8,14 +8,14 @@ from Orders.routes import orders_bp
 app = Flask(__name__)
 
 
-app.config["SQLALCHEMY_DATABASE_URI"]="mysql+pymysql://root:Amrutha%401@localhost:3306"
+app.config["SQLALCHEMY_DATABASE_URI"]="mysql+pymysql://root:password@localhost:3306"
 
 # Configure database (adjust user, password, and db name as per your setup)
 app.config['SQLALCHEMY_BINDS'] = {
-    'auth': 'mysql+pymysql://root:Amrutha%401@localhost/auth_db',
-    'products': 'mysql+pymysql://root:Amrutha%401@localhost/products_db',
-    'cart': 'mysql+pymysql://root:Amrutha%401@localhost/cart_db',
-    'orders': 'mysql+pymysql://root:Amrutha%401@localhost/orders_db'
+    'auth': 'mysql+pymysql://root:password@localhost/auth_db',
+    'products': 'mysql+pymysql://root:password@localhost/products_db',
+    'cart': 'mysql+pymysql://root:password@localhost/cart_db',
+    'orders': 'mysql+pymysql://root:password@localhost/orders_db'
 }
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 # ✅ Initialize extensions
